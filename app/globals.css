@@ -1,8 +1,19 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f7faf8;
+  --foreground: #111827;
+  --card-surface: rgba(255, 255, 255, 0.82);
+  --card-border: rgba(148, 163, 184, 0.24);
+}
+
+.dark {
+  --background: #020817;
+  --foreground: #e5e7eb;
+  --card-surface: rgba(15, 23, 42, 0.82);
+  --card-border: rgba(148, 163, 184, 0.22);
 }
 
 @theme inline {
@@ -12,15 +23,31 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  background: var(--background);
+  color: var(--foreground);
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+.container-shell {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.card-surface {
+  background: var(--card-surface);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.06);
+}
+
+.dark .card-surface {
+  box-shadow: 0 12px 35px rgba(2, 6, 23, 0.45);
 }
